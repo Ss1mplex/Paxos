@@ -1,0 +1,2 @@
+Test.java and PaxosTest.java test different situations of the Paxos System.The tests cover various scenarios, including immediate responses, delays, and non-responses from clients.
+Actually, I do not set 'main' in PaxosClient.In the two test files, I simulated multiple clients to represent M1-9, mimicking the process of voting in the Paxos system.
