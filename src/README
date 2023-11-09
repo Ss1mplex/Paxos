@@ -1,0 +1,1 @@
+Test.java and PaxosTest.java test different situations of the Paxos System.The tests cover various scenarios, including immediate responses, delays, and non-responses from clients.
