@@ -1,4 +1,4 @@
-# Makefile for Java project in 'paxos' folder
+# makefile for Java project in 'paxos' folder
 
 # Java Compiler
 JCC = javac
