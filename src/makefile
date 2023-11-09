@@ -1,39 +1,47 @@
-# makefile for Java project in 'paxos' folder
+# Makefile for the Paxos project
 
-# Java Compiler
+# Variables
 JCC = javac
-
-# Output directory
+JAVA = java
+JFLAGS = -g
+SRCDIR = src/com/paxos
 OUTDIR = out
+MAIN_SERVER = PaxosServer
+MAIN_TEST = Test
+MAIN_PAXOSTEST = PaxosTest
 
-# Source directory
-SRCDIR = src
+# Find all Java files in the source directory
+SOURCES := $(wildcard $(SRCDIR)/*.java)
+# Determine corresponding .class files in the output directory
+CLASSES := $(patsubst $(SRCDIR)/%.java,$(OUTDIR)/%.class,$(SOURCES))
 
-# Find all Java files in the src directory
-SOURCES := $(wildcard $(SRCDIR)/**/*.java)
-
-# Corresponding .class files in the OUTDIR
-CLASSES := $(SOURCES:$(SRCDIR)/%.java=$(OUTDIR)/%.class)
-
-# Default make target
+# Default target
 all: $(CLASSES)
 
-# Rule to compile the Java files
+# Pattern rule for compiling Java
 $(OUTDIR)/%.class: $(SRCDIR)/%.java
-	@mkdir -p $(@D)
-	$(JCC) -d $(OUTDIR) $<
+	mkdir -p $(OUTDIR)
+	$(JCC) $(JFLAGS) -cp $(OUTDIR) -d $(OUTDIR) $<
 
-# Clean target to remove compiled .class files
+# Target to clean the build
 clean:
-	rm -rf $(OUTDIR)/**/*.class
+	rm -rf $(OUTDIR)
 
-# Target to run the Test
-test: all
-	java -cp $(OUTDIR) Test
+# Target to run the server
+server: $(OUTDIR)/$(MAIN_SERVER).class
+	$(JAVA) -cp $(OUTDIR) com.paxos.$(MAIN_SERVER)
 
-# Target to run the PaxosTest
-paxostest: all
-	java -cp $(OUTDIR) PaxosTest
+# Target to run the Test class
+test: $(OUTDIR)/$(MAIN_TEST).class
+	$(JAVA) -cp $(OUTDIR) com.paxos.$(MAIN_TEST)
+
+# Target to run the PaxosTest class
+paxostest: $(OUTDIR)/$(MAIN_PAXOSTEST).class
+	$(JAVA) -cp $(OUTDIR) com.paxos.$(MAIN_PAXOSTEST)
 
 # Phony targets
-.PHONY: all clean test paxostest
+.PHONY: all clean server test paxostest
+
+# Compile the classes
+$(CLASSES): $(SOURCES)
+	$(JCC) $(JFLAGS) -cp $(OUTDIR) -d $(OUTDIR) $^
