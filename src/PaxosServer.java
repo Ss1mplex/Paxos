@@ -10,7 +10,7 @@ public class PaxosServer {
     private static final int SERVER_PORT = 12345;
     private static final ExecutorService executor = Executors.newFixedThreadPool(10);
     private static final ConcurrentHashMap<String, AtomicInteger> proposals = new ConcurrentHashMap<>();
-    // Assume we have 3 proposers: M1, M2, and M3
+
     private static final AtomicInteger voteCountM1 = new AtomicInteger(0);
     private static final AtomicInteger voteCountM2 = new AtomicInteger(0);
     private static final AtomicInteger voteCountM3 = new AtomicInteger(0);
@@ -87,7 +87,7 @@ public class PaxosServer {
     }
 
     private static String getElected() {
-        // Simple majority rule. If there's a tie, the proposer with the smallest number wins.
+
         if (voteCountM1.get() >= voteCountM2.get() && voteCountM1.get() >= voteCountM3.get()) {
             return "M1";
         } else if (voteCountM2.get() > voteCountM1.get() && voteCountM2.get() >= voteCountM3.get()) {

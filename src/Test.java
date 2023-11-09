@@ -4,8 +4,8 @@ import java.util.Random;
 public class Test {
 
     public static void main(String[] args) {
-        int numberOfClients = 9; // You want to simulate the number of clients
-        CountDownLatch startSignal = new CountDownLatch(1); // Create a CountDownLatch with a count of 1
+        int numberOfClients = 9;
+        CountDownLatch startSignal = new CountDownLatch(1);
         Random random = new Random();
 
         for (int i = 0; i < numberOfClients; i++) {

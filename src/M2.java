@@ -8,7 +8,7 @@ public class M2 extends M1 {
     @Override
     public void run() {
         try {
-            Thread.sleep((long) (Math.random() * 1000)); // 模拟在咖啡馆的情况
+            Thread.sleep((long) (Math.random() * 1000)); // delay
             super.run();
         } catch (InterruptedException e) {
             e.printStackTrace();

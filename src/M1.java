@@ -14,11 +14,11 @@ public class M1 extends Thread {
             DataInputStream dis = new DataInputStream(socket.getInputStream());
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
-            // 等待提议
+            // waiting
             String proposal = dis.readUTF();
             System.out.println("M1 received proposal: " + proposal);
 
-            // 即时回应
+            // immediate responses
             dos.writeUTF("M1 Accepted: " + proposal);
 
             dis.close();

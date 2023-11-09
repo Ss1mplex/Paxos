@@ -8,7 +8,7 @@ public class M4toM9 extends M1 {
     @Override
     public void run() {
         try {
-            Thread.sleep((long) (Math.random() * 500)); // 反应时间变化
+            Thread.sleep((long) (Math.random() * 500)); // response time differs
             super.run();
         } catch (InterruptedException e) {
             e.printStackTrace();

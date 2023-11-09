@@ -7,7 +7,7 @@
 
         @Override
         public void run() {
-            if (Math.random() < 0.5) { // 有50%的几率不回应
+            if (Math.random() < 0.5) { // non-responses 50%
                 System.out.println("M3 is not responding this time.");
                 return;
             }
